@@ -1,0 +1,1 @@
+node validate_content.cjs

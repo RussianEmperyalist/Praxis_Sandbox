@@ -1,0 +1,11 @@
+const fs = require('fs');
+const data = JSON.parse(fs.readFileSync('labs_protocols/python_core/02_lists.json', 'utf-8'));
+const s3 = data.steps.find(s => s.step_id === 'step-3');
+const text = s3.tutorial_guidance;
+const validatorRegex = /```[\w]*\n[\s\S]*?```/g;
+const fences = text.match(validatorRegex);
+console.log('Validator regex:', fences ? fences.length : 0, 'fences');
+if (fences) fences.forEach((f, i) => console.log('Fence', i+1, ':', f.substring(0, 60)));
+const myRegex = /```[\s\S]*?```/g;
+const myFences = text.match(myRegex);
+console.log('My regex:', myFences ? myFences.length : 0);
