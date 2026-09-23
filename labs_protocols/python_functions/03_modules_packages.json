@@ -1,0 +1,228 @@
+{
+  "lesson_id": "python_functions/03_modules_packages",
+  "block": "python_development",
+  "module": "python_functions",
+  "meta": {
+    "title": "Модули и пакеты",
+    "topic_order": 3
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как импортировать функцию sqrt из модуля math?",
+      "tutorial_guidance": "Модуль — файл .py с кодом. import math импортирует весь модуль, обращение через math.sqrt(). from math import sqrt импортирует конкретную функцию напрямую. from math import * импортирует всё (не рекомендуется — засоряет пространство имён).",
+      "hint_levels": [
+        "from math import sqrt",
+        "Или import math; math.sqrt()",
+        "Прямой импорт функции"
+      ],
+      "quiz_options": [
+        "from math import sqrt",
+        "import sqrt from math",
+        "include math.sqrt"
+      ],
+      "quiz_correct_index": 0
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай файл mymath.py с функциями add(a, b) и mul(a, b). В другом файле импортируй их и используй. Покажи оба способа импорта.",
+      "tutorial_guidance": "Создание своего модуля — просто файл .py. При импорте Python выполняет код модуля один раз и кэширует результат. __name__ == '__main__' позволяет запускать код только при прямом запуске файла, а не при импорте.",
+      "hint_levels": [
+        "Файл mymath.py с def add, def mul",
+        "import mymath; mymath.add(2,3)",
+        "from mymath import add, mul"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Создан модуль с 2 функциями",
+        "Показан import module",
+        "Показан from module import"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни таблицу способов импорта",
+      "tutorial_guidance": "Разные способы импорта для разных ситуаций. import module — безопасный, явный. from module import name — удобный для частых функций. as — для псевдонимов (часто: import numpy as np). from module import * — только для интерактивной работы.",
+      "hint_levels": [
+        "import math -> math.sqrt()",
+        "from math import sqrt -> sqrt()",
+        "import math as m -> m.sqrt()"
+      ],
+      "table_rows": [
+        {
+          "label": "import math",
+          "expected_value": "math.sqrt(4)"
+        },
+        {
+          "label": "from math import sqrt",
+          "expected_value": "sqrt(4)"
+        },
+        {
+          "label": "import math as m",
+          "expected_value": "m.sqrt(4)"
+        },
+        {
+          "label": "from math import sqrt as sq",
+          "expected_value": "sq(4)"
+        },
+        {
+          "label": "from math import *",
+          "expected_value": "sqrt(4) (не рекомендуется)"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь конструкцию с назначением",
+      "tutorial_guidance": "__name__ == '__main__' — блок кода, выполняемый только при прямом запуске файла (python file.py), а не при импорте. __init__.py — делает папку пакетом. __all__ — список публичных имен для from module import *. Относительный импорт .module — из текущего пакета.",
+      "hint_levels": [
+        "__main__ — прямой запуск",
+        "__init__.py — пакет",
+        "__all__ — публичный API"
+      ],
+      "matching_pairs": [
+        {
+          "left": "if __name__ == '__main__':",
+          "right": "Код только при прямом запуске"
+        },
+        {
+          "left": "__init__.py",
+          "right": "Файл, делающий папку пакетом"
+        },
+        {
+          "left": "__all__ = ['func']",
+          "right": "Определяет публичный API модуля"
+        },
+        {
+          "left": "from . import module",
+          "right": "Относительный импорт из текущего пакета"
+        },
+        {
+          "left": "from ..module import func",
+          "right": "Импорт из родительского пакета"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что делает if __name__ == '__main__':?",
+      "hint_levels": [
+        "Проверяет способ запуска",
+        "Прямой запуск vs импорт",
+        "Код только при python file.py"
+      ],
+      "quiz_options": [
+        "Проверяет версию Python",
+        "Выполняет код только при прямом запуске файла",
+        "Импортирует главное"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как сделать папку пакетом?",
+      "hint_levels": [
+        "Специальный файл",
+        "Пустой файл в папке",
+        "__init__.py"
+      ],
+      "quiz_options": [
+        "Создать файл package.py",
+        "Создать пустой файл __init__.py",
+        "Ничего не нужно"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай пакет geometry с модулями circle.py (area, circumference) и rectangle.py (area, perimeter). В __init__.py сделай импорт всех функций. Проверь: from geometry import area, circumference.",
+      "hint_levels": [
+        "Папка geometry/ с __init__.py",
+        "circle.py, rectangle.py с функциями",
+        "В __init__: from .circle import *; from .rectangle import *"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Структура пакета создана",
+        "__init__.py импортирует функции",
+        "from geometry import ... работает"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши модуль config.py с настройками: DEBUG = True, MAX_RETRIES = 3, TIMEOUT = 30. В другом файле импортируй и используй эти константы.",
+      "hint_levels": [
+        "Константы в UPPER_CASE",
+        "from config import DEBUG, MAX_RETRIES",
+        "Используй в коде"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "config.py с 3 константами",
+        "Импорт констант",
+        "Использование в коде"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Используй стандартные модули: random (randint, choice), datetime (date, timedelta), json (dumps, loads). Напиши код, который генерирует случайное число, текущую дату и сериализует в JSON.",
+      "hint_levels": [
+        "import random, datetime, json",
+        "random.randint(1, 100)",
+        "json.dumps({'num': n, 'date': str(d)})"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Использует random.randint",
+        "Использует datetime.date.today()",
+        "Использует json.dumps"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: конфигурируемое приложение. Создай пакет app с модулями: config.py (настройки), utils.py (вспомогательные функции), main.py (точка входа). main.py читает настройки, вызывает утилиты, работает только при __name__ == '__main__'. Запуск: python -m app.main.",
+      "hint_levels": [
+        "Папка app/ с __init__.py",
+        "config.py, utils.py, main.py",
+        "python -m app.main запускает пакет"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Пакет app с 3 модулями",
+        "config с настройками",
+        "main с __main__ проверкой",
+        "Запускается через python -m app.main"
+      ]
+    }
+  ]
+}

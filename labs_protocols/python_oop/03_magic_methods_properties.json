@@ -1,0 +1,230 @@
+{
+  "lesson_id": "python_oop/03_magic_methods_properties",
+  "block": "python_development",
+  "module": "python_oop",
+  "meta": {
+    "title": "Магические методы и свойства",
+    "topic_order": 3
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как сделать атрибут доступным как свойство (property)?",
+      "tutorial_guidance": "property — дескриптор для управляемого доступа к атрибуту. @property над геттером, @name.setter над сеттером, @name.deleter над делитером. Позволяет валидацию, ленивое вычисление, только чтение. Использование: obj.attr (как атрибут), а не obj.attr().",
+      "hint_levels": [
+        "@property\ndef name(self): return self._name",
+        "@name.setter\ndef name(self, value): ...",
+        "obj.name = 'new' вызывает сеттер"
+      ],
+      "quiz_options": [
+        "def get_name(self): return self.name",
+        "@property\ndef name(self): return self._name",
+        "property(name)"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай класс Temperature с внутренним _celsius. Свойство celsius (геттер/сеттер), свойство fahrenheit (только геттер, вычисляет из Цельсия). Сеттер celsius проверяет: не ниже -273.15.",
+      "tutorial_guidance": "Свойства позволяют контролировать доступ к данным. Геттер — чтение, сеттер — запись с валидацией, деleter — удаление. Внутренние атрибуты по соглашению с _prefix. Вычисляемые свойства не хранят данные, а вычисляют на лету.",
+      "hint_levels": [
+        "class Temperature: _celsius = 0",
+        "@property def celsius(self): return self._celsius",
+        "@celsius.setter def celsius(self, v): if v < -273.15: raise ValueError"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Свойство celsius с геттером и сеттером",
+        "Свойство fahrenheit только геттер",
+        "Валидация минимума в сеттере"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни: магические методы для операторов",
+      "tutorial_guidance": "Магические методы позволяют объектам использовать операторы Python. __add__ -> +, __sub__ -> -, __mul__ -> *, __lt__ -> <, __le__ -> <=, __eq__ -> ==, __hash__ -> hash(), __bool__ -> bool(), __iter__ -> for in, __next__ -> next().",
+      "hint_levels": [
+        "__add__ — a + b",
+        "__lt__ — a < b",
+        "__bool__ — if obj:"
+      ],
+      "table_rows": [
+        {
+          "label": "a + b",
+          "expected_value": "__add__(self, other)"
+        },
+        {
+          "label": "a < b",
+          "expected_value": "__lt__(self, other)"
+        },
+        {
+          "label": "a == b",
+          "expected_value": "__eq__(self, other)"
+        },
+        {
+          "label": "hash(a)",
+          "expected_value": "__hash__(self)"
+        },
+        {
+          "label": "if a:",
+          "expected_value": "__bool__(self)"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь магический метод с операцией",
+      "tutorial_guidance": "Операторы в Python — это синтаксический сахар для вызова магических методов. a + b -> a.__add__(b). a += b -> a.__iadd__(b) (in-place, если есть) или a = a.__add__(b). Сравнения: __lt__, __le__, __eq__, __ne__, __gt__, __ge__. functools.total_ordering по __eq__ и одному из сравнений генерирует остальные.",
+      "hint_levels": [
+        "+ -> __add__",
+        "< -> __lt__",
+        "in -> __contains__"
+      ],
+      "matching_pairs": [
+        {
+          "left": "a + b",
+          "right": "a.__add__(b)"
+        },
+        {
+          "left": "a += b",
+          "right": "a.__iadd__(b) или a = a.__add__(b)"
+        },
+        {
+          "left": "x in a",
+          "right": "a.__contains__(x)"
+        },
+        {
+          "left": "for x in a:",
+          "right": "a.__iter__(), затем __next__()"
+        },
+        {
+          "left": "a[b] = c",
+          "right": "a.__setitem__(b, c)"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Какой метод вызывается при `obj[key] = value`?",
+      "hint_levels": [
+        "Присваивание по ключу",
+        "__setitem__",
+        "Пара: __getitem__ / __setitem__"
+      ],
+      "quiz_options": [
+        "__getitem__",
+        "__setitem__",
+        "__setattr__"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Для чего нужен @property?",
+      "hint_levels": [
+        "Управляемый доступ",
+        "Валидация при записи",
+        "Вычисляемые атрибуты"
+      ],
+      "quiz_options": [
+        "Для создания класса",
+        "Для управляемого доступа к атрибуту (геттер/сеттер)",
+        "Для статических методов"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай класс Vector(x, y) с поддержкой: v1 + v2, v1 - v2, v * scalar, abs(v) (модуль), v1 == v2. Используй __add__, __sub__, __mul__, __abs__, __eq__.",
+      "hint_levels": [
+        "class Vector: def __init__(self, x, y):",
+        "__add__: return Vector(self.x+o.x, self.y+o.y)",
+        "__abs__: return (self.x**2 + self.y**2)**0.5"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Vector с x, y",
+        "__, __, __mul__, __abs__, __eq__",
+        "v1 + v2, v1 - v2 работают",
+        "abs(v) возвращает модуль"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай класс Bag (мешок) с поддержкой: len(bag), item in bag, for item in bag. Внутри список _items. Методы add(item), remove(item). Реализуй __len__, __contains__, __iter__.",
+      "hint_levels": [
+        "__len__ -> len(self._items)",
+        "__contains__ -> item in self._items",
+        "__iter__ -> return iter(self._items)"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Bag с _items списком",
+        "__len__, __contains__, __iter__",
+        "add, remove методы",
+        "len, in, for in работают"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай класс ReadOnlyDict, оборачивающий dict. Разреши чтение (d[key], d.get, key in d, len(d), for k in d). Запрети запись (d[key]=v -> TypeError). Используй __getitem__, __contains__, __len__, __iter__, __setitem__ (raise).",
+      "hint_levels": [
+        "class ReadOnlyDict: _data = {}",
+        "Делегируй чтение к _data",
+        "__setitem__: raise TypeError('read only')"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Оборачивает dict",
+        "Чтение работает",
+        "Запись вызывает TypeError"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: матрица. Класс Matrix(data: list[list]). Поддержка: M[i][j] (через __getitem__ возвращающий RowProxy), M + M, M * M (умножение), M * scalar, det() для 2x2, __str__ красивый вывод. RowProxy поддерживает row[j] и len(row).",
+      "hint_levels": [
+        "class Matrix: data, rows, cols",
+        "__getitem__: return RowProxy(self, i)",
+        "class RowProxy: __getitem__, __len__"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Matrix с data",
+        "M[i][j] через RowProxy",
+        "Сложение и умножение матриц",
+        "det() для 2x2"
+      ]
+    }
+  ]
+}

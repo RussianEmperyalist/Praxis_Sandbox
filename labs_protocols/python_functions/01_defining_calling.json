@@ -1,0 +1,230 @@
+{
+  "lesson_id": "python_functions/01_defining_calling",
+  "block": "python_development",
+  "module": "python_functions",
+  "meta": {
+    "title": "Определение и вызов функций",
+    "topic_order": 1
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как объявить функцию, которая принимает имя и возвращает приветствие?",
+      "tutorial_guidance": "Функции в Python создаются ключевым словом def. После имени в скобках указываются параметры. Тело функции отступает на 4 пробела. return возвращает значение вызывающему коду. Функция без return неявно возвращает None.",
+      "hint_levels": [
+        "def greet(name):",
+        "return f'Привет, {name}!'",
+        "Отступ 4 пробела"
+      ],
+      "quiz_options": [
+        "def greet(name): return f'Привет, {name}!'",
+        "function greet(name) { return ... }",
+        "greet = (name) => f'Привет, {name}!'"
+      ],
+      "quiz_correct_index": 0
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию square(x), которая возвращает квадрат числа. Вызови её для чисел 3, 5, 10 и выведи результаты.",
+      "tutorial_guidance": "Функция определяется один раз, а вызывается много раз. Это основной способ избежать дублирования кода (DRY — Don't Repeat Yourself). Параметр x внутри функции — локальная переменная, недоступная снаружи.",
+      "hint_levels": [
+        "def square(x): return x ** 2",
+        "print(square(3))",
+        "Вызови 3 раза с разными аргументами"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Объявлена функция square с параметром",
+        "Возвращает x ** 2",
+        "Вызвана для 3, 5, 10",
+        "Результаты выведены"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни таблицу: результаты вызовов функций",
+      "tutorial_guidance": "При вызове функции аргументы передаются по позициям или по именам (kwargs). Порядок позиционных аргументов важен. Именованные аргументы позволяют не помнить порядок и пропускать параметры со значениями по умолчанию. return прерывает выполнение функции и передаёт значение наружу.",
+      "hint_levels": [
+        "Позиционные аргументы по порядку",
+        "Именованные: name=value",
+        "return выдаёт результат"
+      ],
+      "table_rows": [
+        {
+          "label": "def add(a, b): return a + b; add(2, 3)",
+          "expected_value": "5"
+        },
+        {
+          "label": "add(b=5, a=2)",
+          "expected_value": "7"
+        },
+        {
+          "label": "def greet(name='Гость'): return f'Привет, {name}'; greet()",
+          "expected_value": "'Привет, Гость'"
+        },
+        {
+          "label": "greet('Анна')",
+          "expected_value": "'Привет, Анна'"
+        },
+        {
+          "label": "def f(): return 42; f()",
+          "expected_value": "42"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь понятие с описанием",
+      "tutorial_guidance": "Параметр — переменная в объявлении функции. Аргумент — значение при вызове. Позиционные аргументы идут по порядку. Именованные — с указанием имени параметра. Значение по умолчанию делает параметр необязательным. *args собирает лишние позиционные аргументы в кортеж, **kwargs — именованные в словарь.",
+      "hint_levels": [
+        "Параметр — в def, аргумент — при вызове",
+        "Именованные позволяют менять порядок",
+        "*args — кортеж, **kwargs — словарь"
+      ],
+      "matching_pairs": [
+        {
+          "left": "Параметр",
+          "right": "Переменная в определении функции"
+        },
+        {
+          "left": "Аргумент",
+          "right": "Значение при вызове функции"
+        },
+        {
+          "left": "Значение по умолчанию",
+          "right": "Параметр становится необязательным"
+        },
+        {
+          "left": "*args",
+          "right": "Собирает позиционные аргументы в кортеж"
+        },
+        {
+          "left": "**kwargs",
+          "right": "Собирает именованные аргументы в словарь"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что вернёт функция без return?",
+      "hint_levels": [
+        "Неявный возврат",
+        "Специальное значение",
+        "None"
+      ],
+      "quiz_options": [
+        "0",
+        "''",
+        "None"
+      ],
+      "quiz_correct_index": 2
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как сделать параметр необязательным со значением по умолчанию?",
+      "hint_levels": [
+        "Присваивание в определении",
+        "def func(param=value):",
+        "Параметры с дефолтом в конце"
+      ],
+      "quiz_options": [
+        "def func(param = value):",
+        "def func(param := value):",
+        "def func(param?): value"
+      ],
+      "quiz_correct_index": 0
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию calc(a, b, op='+'), которая выполняет операцию op над a и b. Поддержи: +, -, *, /. При делении на ноль верни 'Ошибка'.",
+      "hint_levels": [
+        "Параметр op с дефолтом '+'",
+        "if/elif для операций",
+        "Проверка b == 0 перед делением"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Функция принимает a, b, op",
+        "op имеет значение по умолчанию '+'",
+        "Обрабатывает 4 операции",
+        "Возвращает 'Ошибка' при делении на 0"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию greet_all(*names), которая принимает любое количество имен и выводит приветствие для каждого: 'Привет, {name}!'.",
+      "hint_levels": [
+        "*names собирает в кортеж",
+        "Цикл for name in names",
+        "Вызов: greet_all('Аня', 'Боря', 'Ваня')"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Использует *names параметр",
+        "Цикл по names",
+        "Выводит приветствие для каждого"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию create_profile(**kwargs), которая принимает именованные аргументы и возвращает словарь с ними. Добавь ключ 'created_at' со значением 'now'.",
+      "hint_levels": [
+        "**kwargs собирает в словарь",
+        "kwargs['created_at'] = 'now'",
+        "return kwargs"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Использует **kwargs",
+        "Добавляет created_at",
+        "Возвращает словарь"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: калькулятор с историей. Функция calc(a, b, op) возвращает результат и сохраняет операцию в список history. Функция show_history() выводит все операции. Поддержи: +, -, *, /, //, %, **.",
+      "hint_levels": [
+        "history = [] вне функции",
+        "history.append(f'{a} {op} {b} = {result}')",
+        "global history внутри calc"
+      ],
+      "starter_code": "history = []\n",
+      "check_rules": [
+        "calc сохраняет в history",
+        "show_history выводит историю",
+        "Поддерживает 6 операций",
+        "Обрабатывает деление на 0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "lesson_id": "python_exceptions/02_custom_exceptions",
+  "block": "python_development",
+  "module": "python_exceptions",
+  "meta": {
+    "title": "Собственные исключения",
+    "topic_order": 2
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как создать свой класс исключения?",
+      "tutorial_guidance": "Собственные исключения создаются наследованием от Exception (или BaseException). class MyError(Exception): pass — минимальный класс. Можно добавить __init__ для хранения дополнительных данных. Это позволяет ловить специфические ошибки отдельно от системных.",
+      "hint_levels": [
+        "class MyError(Exception):",
+        "Наследование от Exception",
+        "pass или кастомный __init__"
+      ],
+      "quiz_options": [
+        "class MyError: pass",
+        "class MyError(Exception): pass",
+        "def MyError(Exception): pass"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай исключение InsufficientFundsError с атрибутами balance и amount. При raise передавай эти значения. В except получи доступ к ним через экземпляр.",
+      "tutorial_guidance": "Кастомные исключения могут хранить контекст ошибки. В __init__ сохраняй полезные данные. При обработке except MyError as e: — e.balance, e.amount доступны. Это лучше, чем парсить сообщение строки.",
+      "hint_levels": [
+        "class InsufficientFundsError(Exception):",
+        "def __init__(self, balance, amount):",
+        "self.balance = balance; self.amount = amount"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Класс наследуется от Exception",
+        "Имеет balance и amount",
+        "raise с аргументами",
+        "except получает атрибуты"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни: иерархия исключений",
+      "tutorial_guidance": "Все исключения наследуются от BaseException. Exception — база для пользовательских ошибок. SystemExit, KeyboardInterrupt — от BaseException напрямую (не ловятся except Exception). Стандартные: ValueError, TypeError, KeyError, IndexError, ZeroDivisionError — наследники Exception. Свои исключения тоже от Exception.",
+      "hint_levels": [
+        "BaseException -> Exception -> ValueError",
+        "KeyboardInterrupt не ловится except Exception",
+        "Свои от Exception"
+      ],
+      "table_rows": [
+        {
+          "label": "BaseException",
+          "expected_value": "Корень иерархии"
+        },
+        {
+          "label": "Exception",
+          "expected_value": "База для пользовательских ошибок"
+        },
+        {
+          "label": "ValueError",
+          "expected_value": "Наследник Exception"
+        },
+        {
+          "label": "KeyboardInterrupt",
+          "expected_value": "Наследник BaseException (не Exception)"
+        },
+        {
+          "label": "MyError(Exception)",
+          "expected_value": "Пользовательское исключение"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь паттерн с описанием",
+      "tutorial_guidance": "Исключения — не только для ошибок, но и для управления потоком (например, StopIteration в итераторах). Паттерны: EAFP (Easier to Ask Forgiveness than Permission) — пробуй и лови, LBYL (Look Before You Leap) — проверяй заранее. В Python принят EAFP. raise from — цепочка исключений (причина).",
+      "hint_levels": [
+        "EAFP — try/except",
+        "LBYL — if проверки",
+        "raise from — причина ошибки"
+      ],
+      "matching_pairs": [
+        {
+          "left": "EAFP",
+          "right": "Пробуй выполнить, лови исключение"
+        },
+        {
+          "left": "LBYL",
+          "right": "Проверь заранее, потом действуй"
+        },
+        {
+          "left": "raise MyError() from e",
+          "right": "Сохраняет исходную причину (__cause__)"
+        },
+        {
+          "left": "except Exception as e:",
+          "right": "Доступ к объекту исключения"
+        },
+        {
+          "left": "assert condition, 'msg'",
+          "right": "Проверка контракта, AssertionError"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "От какого класса наследовать пользовательское исключение?",
+      "hint_levels": [
+        "Не от BaseException",
+        "Стандартная база",
+        "Exception"
+      ],
+      "quiz_options": [
+        "BaseException",
+        "Exception",
+        "Error"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что делает raise ValueError('msg') from e?",
+      "hint_levels": [
+        "Цепочка исключений",
+        "Сохраняет причину",
+        "__cause__ атрибут"
+      ],
+      "quiz_options": [
+        "Создаёт новое исключение без связи",
+        "Связывает новое исключение с e как причиной",
+        "Игнорирует e"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай иерархию исключений для банка: BankError (базовый), InsufficientFundsError, InvalidAccountError, TransactionLimitError. Все хранят account_id. Демонстрируй raise и catch.",
+      "hint_levels": [
+        "class BankError(Exception):",
+        "Наследники с account_id",
+        "except BankError ловит всех"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Базовый BankError",
+        "3 наследника с account_id",
+        "except BankError ловит всех"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию parse_config(text), которая парсит строки 'key=value'. При неверном формате raise FormatError(line_num, line). Создай FormatError с номером строки и содержимым.",
+      "hint_levels": [
+        "class FormatError(Exception):",
+        "enumerate(text.splitlines(), 1)",
+        "raise FormatError(num, line) from None"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "FormatError с line_num и line",
+        "Парсит key=value",
+        "raise с аргументами"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Реализуй контекстный менеджер Timer через класс с __enter__ и __exit__. __enter__ запоминает время старта, __exit__ выводит затраченное время. Используй: with Timer(): time.sleep(1).",
+      "hint_levels": [
+        "class Timer:",
+        "__enter__ -> self.start = time.time()",
+        "__exit__ -> print(time.time() - self.start)"
+      ],
+      "starter_code": "import time\n",
+      "check_rules": [
+        "Класс с __enter__ и __exit__",
+        "Засекает время",
+        "Выводит длительность"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: API-клиент с retry. Функция fetch_with_retry(url, max_retries=3) делает запрос (эмулируй random.choice([success, fail])). При неудаче ждёт 2**attempt секунд и повторяет. Кастомное исключение MaxRetriesExceededError хранит url и attempts. После исчерпания попыток raise его.",
+      "hint_levels": [
+        "class MaxRetriesExceededError(Exception):",
+        "for attempt in range(max_retries):",
+        "time.sleep(2 ** attempt)"
+      ],
+      "starter_code": "import random, time\n",
+      "check_rules": [
+        "MaxRetriesExceededError с url и attempts",
+        "Retry с экспоненциальной задержкой",
+        "raise после max_retries",
+        "Успех прерывает цикл"
+      ]
+    }
+  ]
+}

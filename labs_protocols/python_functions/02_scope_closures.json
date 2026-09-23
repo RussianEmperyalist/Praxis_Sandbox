@@ -1,0 +1,231 @@
+{
+  "lesson_id": "python_functions/02_scope_closures",
+  "block": "python_development",
+  "module": "python_functions",
+  "meta": {
+    "title": "Область видимости и замыкания",
+    "topic_order": 2
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что выведет код?\nx = 10\ndef f():\n    x = 5\n    print(x)\nf()\nprint(x)",
+      "tutorial_guidance": "В Python есть локальная и глобальная область видимости. Переменная, созданная внутри функции (присваивание), локальна для этой функции. Глобальная переменная не меняется. Чтобы изменить глобальную внутри функции, нужно использовать ключевое слово global. Но лучше избегать глобальных переменных — передавай данные через параметры и возвращай результаты.",
+      "hint_levels": [
+        "x = 5 внутри создаёт локальную переменную",
+        "Глобальная x не меняется",
+        "Вывод: 5, потом 10"
+      ],
+      "quiz_options": [
+        "5, 10",
+        "5, 5",
+        "10, 10",
+        "10, 5"
+      ],
+      "quiz_correct_index": 0
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию make_counter(), которая возвращает функцию-счётчик. Каждый вызов счётчика увеличивает значение на 1 и возвращает его. Используй nonlocal.",
+      "tutorial_guidance": "Замыкание (closure) — функция, запоминающая переменные из внешней области видимости. nonlocal позволяет изменить переменную во внешней (не глобальной!) функции. Это основа для создания функций с состоянием без классов.",
+      "hint_levels": [
+        "count = 0 во внешней функции",
+        "nonlocal count во внутренней",
+        "return inner_function"
+      ],
+      "starter_code": "def make_counter():\n    count = 0\n    # напиши внутреннюю функцию\n    return inner\n",
+      "check_rules": [
+        "Использует nonlocal",
+        "Внутренняя функция увеличивает count",
+        "Возвращает функцию",
+        "Каждый вызов даёт новое число"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни: какая переменная доступна где",
+      "tutorial_guidance": "LEGB — порядок поиска имён в Python: Local (локальная), Enclosing (внешняя функция), Global (модуль), Builtins (встроенные). Присваивание создаёт локальную переменную, если не указано global/nonlocal. Чтение ищет по цепочке LEGB.",
+      "hint_levels": [
+        "L — локальная в функции",
+        "E — во внешней функции",
+        "G — глобальная модуля",
+        "B — встроенные (print, len)"
+      ],
+      "table_rows": [
+        {
+          "label": "x = 1; def f(): print(x); f()",
+          "expected_value": "1 (Global)"
+        },
+        {
+          "label": "def f(): x = 1; def g(): print(x); g(); f()",
+          "expected_value": "1 (Enclosing)"
+        },
+        {
+          "label": "def f(): x = 1; print(x); f()",
+          "expected_value": "1 (Local)"
+        },
+        {
+          "label": "print(len)",
+          "expected_value": "<built-in function len> (Builtins)"
+        },
+        {
+          "label": "x = 1; def f(): global x; x = 2; f(); print(x)",
+          "expected_value": "2 (Global изменена)"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь ключевое слово с действием",
+      "tutorial_guidance": "global — работа с глобальной переменной модуля. nonlocal — работа с переменной во внешней функции (не глобальной!). Без этих слов присваивание внутри функции всегда создаёт новую локальную переменную. Читать внешние переменные можно без ключевых слов, а вот менять — только с ними.",
+      "hint_levels": [
+        "global — модуль",
+        "nonlocal — внешняя функция",
+        "Без слов — только чтение"
+      ],
+      "matching_pairs": [
+        {
+          "left": "global x",
+          "right": "Разрешает изменять глобальную x"
+        },
+        {
+          "left": "nonlocal x",
+          "right": "Разрешает изменять x во внешней функции"
+        },
+        {
+          "left": "x = 5 (внутри функции)",
+          "right": "Создаёт новую локальную x"
+        },
+        {
+          "left": "print(x) (внутри функции)",
+          "right": "Ищет x по LEGB"
+        },
+        {
+          "left": "lambda x: x + 1",
+          "right": "Создаёт локальную x для лямбды"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Какое ключевое слово нужно, чтобы изменить переменную во внешней функции?",
+      "hint_levels": [
+        "Не global",
+        "Для enclosing scope",
+        "nonlocal"
+      ],
+      "quiz_options": [
+        "global",
+        "nonlocal",
+        "outer"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что такое замыкание (closure)?",
+      "hint_levels": [
+        "Функция + запомненные переменные",
+        "Внутренняя функция использует внешние",
+        "Запоминает окружение создания"
+      ],
+      "quiz_options": [
+        "Функция внутри функции",
+        "Функция, запоминающая переменные внешней области видимости",
+        "Рекурсивная функция"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию make_multiplier(factor), которая возвращает функцию, умножающая аргумент на factor. Проверь: mul3 = make_multiplier(3); mul3(4) == 12.",
+      "hint_levels": [
+        "Замыкание запоминает factor",
+        "Внутренняя: def inner(x): return x * factor",
+        "nonlocal не нужен, только чтение"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "make_multiplier возвращает функцию",
+        "Использует factor из замыкания",
+        "mul3(4) даёт 12"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию make_accumulator(), которая возвращает функцию, накапливающую сумму всех переданных чисел. acc = make_accumulator(); acc(5) -> 5; acc(3) -> 8; acc(2) -> 10.",
+      "hint_levels": [
+        "total = 0 во внешней",
+        "nonlocal total во внутренней",
+        "total += x; return total"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Использует nonlocal",
+        "Накпливает сумму между вызовами",
+        "acc(5)=5, acc(3)=8, acc(2)=10"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Исправь код, чтобы он выводил 10, 20, 30:\nfor i in range(3):\n    funcs.append(lambda: i * 10)\nfor f in funcs:\n    print(f())  # сейчас 20, 20, 20",
+      "hint_levels": [
+        "Лямбда захватывает переменную, а не значение",
+        "Используй аргумент по умолчанию: lambda i=i: i * 10",
+        "Или создай функцию в цикле с параметром"
+      ],
+      "starter_code": "funcs = []\nfor i in range(3):\n    # исправь эту строку\nfor f in funcs:\n    print(f())\n",
+      "check_rules": [
+        "Выводит 0, 10, 20 (или 10, 20, 30)",
+        "Исправлена ловушка позднего связывания",
+        "Использует дефолтный аргумент или фабрику"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: система плагинов. Функция register_plugin(name, func) сохраняет функцию в словарь plugins. Функция run_plugin(name, *args, **kwargs) находит и вызывает плагин. Функция list_plugins() выводит имена всех плагинов. Демонстрируй: зарегистрируй 2 плагина, запусти их, выведи список.",
+      "hint_levels": [
+        "plugins = {} глобально",
+        "register_plugin добавляет в словарь",
+        "run_plugin использует *args, **kwargs"
+      ],
+      "starter_code": "plugins = {}\n",
+      "check_rules": [
+        "register_plugin сохраняет функцию",
+        "run_plugin вызывает с аргументами",
+        "list_plugins выводит имена",
+        "Демонстрация с 2 плагинами"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "lesson_id": "python_exceptions/01_basics",
+  "block": "python_development",
+  "module": "python_exceptions",
+  "meta": {
+    "title": "Основы исключений",
+    "topic_order": 1
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Какое исключение возникнет при делении на ноль?",
+      "tutorial_guidance": "В Python ошибки времени выполнения вызывают исключения (exceptions). ZeroDivisionError — при делении на ноль. ValueError — неподходящее значение (int('abc')). TypeError — неподходящий тип (len(5)). KeyError — нет ключа в словаре. IndexError — индекс за границами списка. Исключения прерывают выполнение, если не перехвачены.",
+      "hint_levels": [
+        "Деление на 0",
+        "ZeroDivisionError",
+        "Встроенное исключение"
+      ],
+      "quiz_options": [
+        "ValueError",
+        "ZeroDivisionError",
+        "TypeError"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши код, который запрашивает число у пользователя, пытается преобразовать в int, и при ошибке выводит 'Неверный ввод'. Используй try/except.",
+      "tutorial_guidance": "Блок try содержит код, который может вызвать исключение. except ExceptionType: перехватывает конкретный тип. Можно перехватывать несколько типов: except (ValueError, TypeError):. except без типа ловит всё (не рекомендуется — маскирует баги). finally выполняется всегда.",
+      "hint_levels": [
+        "try: x = int(input())",
+        "except ValueError: print('Неверный ввод')",
+        "Или except Exception as e: для доступа к объекту"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Использует try/except",
+        "Ловит ValueError",
+        "Выводит сообщение об ошибке"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни: какое исключение возникнет",
+      "tutorial_guidance": "Знание типов исключений помогает писать точные except-блоки. Не лови Exception или BaseException — это скрывает реальные баги. Лови конкретные типы, которые ожидаешь. raise позволяет генерировать исключения самому.",
+      "hint_levels": [
+        "int('abc') -> ValueError",
+        "{}['key'] -> KeyError",
+        "[1][5] -> IndexError"
+      ],
+      "table_rows": [
+        {
+          "label": "int('hello')",
+          "expected_value": "ValueError"
+        },
+        {
+          "label": "d = {}; d['missing']",
+          "expected_value": "KeyError"
+        },
+        {
+          "label": "lst = [1]; lst[5]",
+          "expected_value": "IndexError"
+        },
+        {
+          "label": "5 + 'str'",
+          "expected_value": "TypeError"
+        },
+        {
+          "label": "10 / 0",
+          "expected_value": "ZeroDivisionError"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь блок try/except с описанием",
+      "tutorial_guidance": "try — код под наблюдением. except — обработка конкретного исключения. else — выполняется, если НЕ было исключения (полезно для кода, который не должен срабатывать при ошибке). finally — выполняется ВСЕГДА (очистка ресурсов). raise — выброс исключения. with — контекстный менеджер (автоматический finally).",
+      "hint_levels": [
+        "else — если не было ошибки",
+        "finally — всегда",
+        "with — авто-очистка"
+      ],
+      "matching_pairs": [
+        {
+          "left": "try:",
+          "right": "Код, который может вызвать исключение"
+        },
+        {
+          "left": "except ValueError:",
+          "right": "Обработка конкретного исключения"
+        },
+        {
+          "left": "else:",
+          "right": "Выполняется, если исключения не было"
+        },
+        {
+          "left": "finally:",
+          "right": "Выполняется всегда (даже при return)"
+        },
+        {
+          "left": "with open() as f:",
+          "right": "Автоматическое закрытие (контекстный менеджер)"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Какой блок выполняется всегда, даже если было исключение или return?",
+      "hint_levels": [
+        "Для очистки ресурсов",
+        "Закрытие файлов, соединений",
+        "finally"
+      ],
+      "quiz_options": [
+        "else",
+        "finally",
+        "except"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как перехватить несколько типов исключений?",
+      "hint_levels": [
+        "Кортеж типов",
+        "except (Type1, Type2):",
+        "Не несколько except подряд"
+      ],
+      "quiz_options": [
+        "except ValueError, TypeError:",
+        "except (ValueError, TypeError):",
+        "except ValueError or TypeError:"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию safe_divide(a, b), которая возвращает результат деления или строку 'Ошибка: деление на ноль' при ZeroDivisionError, и 'Ошибка: неверные типы' при TypeError.",
+      "hint_levels": [
+        "try: return a / b",
+        "except ZeroDivisionError: return ...",
+        "except TypeError: return ..."
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Функция с try/except",
+        "Ловит ZeroDivisionError",
+        "Ловит TypeError",
+        "Возвращает строки ошибок"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши функцию read_int(prompt), которая в цикле запрашивает ввод до тех пор, пока пользователь не введёт корректное целое число. Возвращает число.",
+      "hint_levels": [
+        "while True:",
+        "try/except внутри цикла",
+        "return при успехе, continue при ошибке"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Цикл while True",
+        "try/except ValueError",
+        "Возвращает int при успехе"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши код, который открывает файл 'data.txt' для чтения через with, читает содержимое, и в finally выводит 'Файл обработан'. Проверь на несуществующем файле.",
+      "hint_levels": [
+        "with open('data.txt') as f:",
+        "Автоматически закрывает",
+        "finally для логирования"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Использует with open",
+        "Читает файл",
+        "finally выводит сообщение"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: валидатор данных. Функция validate_user(data: dict) проверяет словарь: обязательные ключи name (str, не пустой), age (int, 0-150), email (str, содержит @). При ошибке raise ValueError с описанием. Функция register_user(data) вызывает validate_user, при успехе возвращает 'OK', при ошибке — сообщение об ошибке.",
+      "hint_levels": [
+        "raise ValueError('сообщение')",
+        "isinstance для проверки типов",
+        "try/except в register_user"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "validate_user проверяет все поля",
+        "raise ValueError с описанием",
+        "register_user ловит и возвращает сообщение",
+        "Возвращает 'OK' при успехе"
+      ]
+    }
+  ]
+}

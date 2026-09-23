@@ -1,0 +1,232 @@
+{
+  "lesson_id": "python_oop/01_classes_objects",
+  "block": "python_development",
+  "module": "python_oop",
+  "meta": {
+    "title": "Классы и объекты",
+    "topic_order": 1
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как объявить класс Person с атрибутом name?",
+      "tutorial_guidance": "Класс — шаблон для создания объектов. Объявление: class ClassName:. Атрибуты создаются в __init__(self, ...). self — ссылка на создаваемый объект. Методы — функции внутри класса, первый параметр всегда self. Создание объекта: obj = ClassName(аргументы).",
+      "hint_levels": [
+        "class Person:",
+        "def __init__(self, name): self.name = name",
+        "p = Person('Анна')"
+      ],
+      "quiz_options": [
+        "class Person: def __init__(self, name): self.name = name",
+        "def Person(name): self.name = name",
+        "Person = {name: ''}"
+      ],
+      "quiz_correct_index": 0
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай класс Rectangle с width, height. Метод area() возвращает площадь, perimeter() — периметр. Создай 2 объекта и выведи их площадь.",
+      "tutorial_guidance": "__init__ инициализирует атрибуты экземпляра. Методы обращаются к атрибутам через self. Каждый объект имеет свои атрибуты. self не передаётся явно при вызове: rect.area() автоматически передаёт rect как self.",
+      "hint_levels": [
+        "class Rectangle: def __init__(self, w, h): self.w=w; self.h=h",
+        "def area(self): return self.w * self.h",
+        "r1 = Rectangle(3, 4); print(r1.area())"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Класс Rectangle с __init__",
+        "Методы area и perimeter",
+        "Созданы 2 объекта",
+        "Вывод площадей"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни: термины ООП",
+      "tutorial_guidance": "Класс — чертеж. Объект/экземпляр — конкретная реализация. Атрибут — данные объекта. Метод — поведение объекта. __init__ — конструктор (инициализатор). self — ссылка на текущий объект. Инкапсуляция — сокрытие деталей (в Python по соглашению: _private, __name_mangling).",
+      "hint_levels": [
+        "Класс — шаблон",
+        "Объект — экземпляр",
+        "__init__ — конструктор"
+      ],
+      "table_rows": [
+        {
+          "label": "class Cat:",
+          "expected_value": "Класс (шаблон)"
+        },
+        {
+          "label": "cat = Cat()",
+          "expected_value": "Объект/экземпляр"
+        },
+        {
+          "label": "self.name = 'Барсик'",
+          "expected_value": "Атрибут экземпляра"
+        },
+        {
+          "label": "def meow(self):",
+          "expected_value": "Метод"
+        },
+        {
+          "label": "__init__(self, name):",
+          "expected_value": "Конструктор/инициализатор"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь спецметод с назначением",
+      "tutorial_guidance": "Специальные методы (dunder — double underscore) позволяют объектам вестись как встроенные типы. __str__ — читаемое представление (print). __repr__ — для отладки (repr). __eq__ — сравнение ==. __len__ — len(). __getitem__ — obj[key]. __call__ — obj().",
+      "hint_levels": [
+        "__str__ — print(obj)",
+        "__repr__ — repr(obj)",
+        "__eq__ — == comparison"
+      ],
+      "matching_pairs": [
+        {
+          "left": "__str__(self)",
+          "right": "Строковое представление для пользователя (print)"
+        },
+        {
+          "left": "__repr__(self)",
+          "right": "Представление для разработчика (repr, консоль)"
+        },
+        {
+          "left": "__eq__(self, other)",
+          "right": "Сравнение на равенство =="
+        },
+        {
+          "left": "__len__(self)",
+          "right": "Длина len(obj)"
+        },
+        {
+          "left": "__getitem__(self, key)",
+          "right": "Доступ по индексу/ключу obj[key]"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Какой метод вызывается при print(obj)?",
+      "hint_levels": [
+        "Для пользователя",
+        "Читаемое представление",
+        "__str__"
+      ],
+      "quiz_options": [
+        "__repr__",
+        "__str__",
+        "__print__"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что такое self?",
+      "hint_levels": [
+        "Ссылка на объект",
+        "Первый параметр метода",
+        "Автоматически передаётся"
+      ],
+      "quiz_options": [
+        "Имя класса",
+        "Ссылка на текущий экземпляр",
+        "Глобальная переменная"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай класс BankAccount с атрибутами owner, balance. Методы: deposit(amount), withdraw(amount) (проверка средств), __str__. Создай счёт, положи 1000, сними 300, выведи счёт.",
+      "hint_levels": [
+        "balance = 0 в __init__",
+        "deposit: self.balance += amount",
+        "withdraw: if amount > balance: raise ValueError"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Класс с owner, balance",
+        "deposit и withdraw",
+        "Проверка средств в withdraw",
+        "__str__ показывает баланс"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Добавь классу BankAccount метод __eq__: счета равны, если одинаковые owner и balance. Проверь: acc1 == acc2.",
+      "hint_levels": [
+        "def __eq__(self, other):",
+        "isinstance(other, BankAccount)",
+        "return self.owner == other.owner and self.balance == other.balance"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Метод __eq__",
+        "Сравнивает owner и balance",
+        "Проверка isinstance"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай класс Counter с атрибутом count. Методы: increment(), decrement(), reset(). Спецметод __call__ увеличивает счётчик и возвращает новое значение. Проверь: c = Counter(); c(); c(); print(c()).",
+      "hint_levels": [
+        "__call__ делает объект вызываемым",
+        "self.count += 1; return self.count",
+        "c() вызывает __call__"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Класс Counter с count",
+        "Методы increment, decrement, reset",
+        "__call__ увеличивает и возвращает",
+        "c(); c(); c() работает"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: библиотека. Класс Book (title, author, year, isbn). Класс Library с списком книг. Методы: add_book(book), remove_book(isbn), find_by_author(author), find_by_year(year), __len__, __getitem__(index). Демонстрируй: добавь 3 книги, найди по автору, выведи длину.",
+      "hint_levels": [
+        "class Book: __init__, __str__",
+        "class Library: books = []",
+        "add_book: self.books.append(book)",
+        "__len__ -> len(self.books)"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Класс Book с 4 атрибутами",
+        "Класс Library со списком",
+        "add, remove, find методы",
+        "__len__ и __getitem__ работают"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "lesson_id": "python_oop/02_inheritance_polymorphism",
+  "block": "python_development",
+  "module": "python_oop",
+  "meta": {
+    "title": "Наследование и полиморфизм",
+    "topic_order": 2
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как класс Dog унаследовать от Animal?",
+      "tutorial_guidance": "Наследование: class Child(Parent):. Дочерний класс получает все атрибуты и методы родителя. Может переопределять (override) методы. super() вызывает метод родителя. Множественное наследование: class Child(Parent1, Parent2):. Порядок разрешения методов (MRO) — C3 линеаризация.",
+      "hint_levels": [
+        "class Dog(Animal):",
+        "super().__init__(...) в __init__",
+        "Переопределение метода"
+      ],
+      "quiz_options": [
+        "class Dog: Animal",
+        "class Dog(Animal):",
+        "Dog inherits Animal"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай базовый класс Animal с name и методом speak() (выводит '...'). Создай Dog и Cat, переопределяющие speak(). Вызови speak() для списка животных.",
+      "tutorial_guidance": "Полиморфизм — одинаковый интерфейс, разная реализация. При переборе списка животных вызывается правильный метод каждого объекта. super().speak() позволяет расширить, а не заменить поведение родителя.",
+      "hint_levels": [
+        "class Animal: def speak(self): print('...')",
+        "class Dog(Animal): def speak(self): print('Гав!')",
+        "for animal in animals: animal.speak()"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Базовый класс Animal",
+        "Dog и Cat наследуются",
+        "Переопределён speak()",
+        "Цикл вызывает правильный метод"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни: виды наследования и super()",
+      "tutorial_guidance": "Одиночное наследование — один родитель. Множественное — несколько. super() вызывает метод родителя без явного имени класса. В __init__ нужно вызывать super().__init__() для инициализации родительской части. MRO (Method Resolution Order) определяет порядок поиска методов.",
+      "hint_levels": [
+        "class A(B): — одиночное",
+        "class C(A, B): — множественное",
+        "super().__init__() — инициализация родителя"
+      ],
+      "table_rows": [
+        {
+          "label": "class Dog(Animal):",
+          "expected_value": "Одиночное наследование"
+        },
+        {
+          "label": "class FlyingDog(Dog, Bird):",
+          "expected_value": "Множественное наследование"
+        },
+        {
+          "label": "super().__init__(name)",
+          "expected_value": "Вызов __init__ родителя"
+        },
+        {
+          "label": "super().speak()",
+          "expected_value": "Вызов метода родителя"
+        },
+        {
+          "label": "Dog.__mro__",
+          "expected_value": "Порядок разрешения методов"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь понятие с определением",
+      "tutorial_guidance": "Полиморфизм — один интерфейс, разные реализации. Абстрактный базовый класс (ABC) — класс с абстрактными методами, которые обязаны реализовать наследники (from abc import ABC, abstractmethod). Нельзя создать экземпляр ABC. Интерфейс — контракт методов. Композиция — включение объекта вместо наследования (часто лучше).",
+      "hint_levels": [
+        "ABC — абстрактный класс",
+        "@abstractmethod — обязывает реализовать",
+        "Композиция vs наследование"
+      ],
+      "matching_pairs": [
+        {
+          "left": "Полиморфизм",
+          "right": "Один интерфейс, разная реализация"
+        },
+        {
+          "left": "ABC (Abstract Base Class)",
+          "right": "Класс с абстрактными методами, экземпляр нельзя создать"
+        },
+        {
+          "left": "@abstractmethod",
+          "right": "Декоратор: наследник обязан реализовать метод"
+        },
+        {
+          "left": "Композиция",
+          "right": "Включение объекта как атрибут вместо наследования"
+        },
+        {
+          "left": "MRO",
+          "right": "Порядок поиска методов в иерархии"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как сделать метод абстрактным?",
+      "hint_levels": [
+        "from abc import ABC, abstractmethod",
+        "Декоратор над методом",
+        "Наследник обязан реализовать"
+      ],
+      "quiz_options": [
+        "def method(self): pass",
+        "@abstractmethod\ndef method(self): pass",
+        "abstract def method(self):"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что выведет Dog.__mro__ при class Dog(Animal):?",
+      "hint_levels": [
+        "Порядок поиска методов",
+        "Сначала Dog, потом Animal, потом object",
+        "(Dog, Animal, object)"
+      ],
+      "quiz_options": [
+        "(Dog, object)",
+        "(Dog, Animal, object)",
+        "(Animal, Dog, object)"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай абстрактный класс Shape с абстрактными area() и perimeter(). Наследники: Circle(radius), Rectangle(w, h). Реализуй методы. В списке фигур посчитай суммарную площадь.",
+      "hint_levels": [
+        "from abc import ABC, abstractmethod",
+        "class Shape(ABC): @abstractmethod def area(self): ...",
+        "math.pi * r**2, w * h"
+      ],
+      "starter_code": "import math\n",
+      "check_rules": [
+        "Shape — ABC с абстрактными методами",
+        "Circle и Rectangle реализуют их",
+        "Сумма площадей списка фигур"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай класс Employee (name, salary). Наследник Manager с атрибутом team (список Employee). Метод add_employee(emp), total_salary() (свой + команда). Переопредели __str__.",
+      "hint_levels": [
+        "class Employee: def __init__(self, name, salary):",
+        "class Manager(Employee): team = []",
+        "total_salary: sum(e.salary for e in team) + self.salary"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Employee с name, salary",
+        "Manager наследуется, имеет team",
+        "add_employee и total_salary",
+        "__str__ переопределён"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Реализуй паттерн Стратегия: базовый класс SortStrategy с методом sort(data). Наследники: BubbleSort, QuickSort. Класс Sorter принимает стратегию в __init__ и вызывает её sort(). Покажи переключение стратегий.",
+      "hint_levels": [
+        "class SortStrategy(ABC): @abstractmethod def sort(self, data):",
+        "class BubbleSort(SortStrategy): ...",
+        "Sorter(strategy).sort(data)"
+      ],
+      "starter_code": "from abc import ABC, abstractmethod\n",
+      "check_rules": [
+        "SortStrategy — ABC",
+        "2 конкретные стратегии",
+        "Sorter делегирует стратегии",
+        "Можно менять стратегию"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: игра. Абстрактный Character (name, hp, attack()). Наследники: Warrior (высокий hp, обычная атака), Mage (низкий hp, сильная атака), Archer (средний, атака с шансом 2x). Функция battle(c1, c2) — по очереди атакуют до 0 hp. Полиморфизм: battle работает с любыми Character.",
+      "hint_levels": [
+        "class Character(ABC): hp, @abstractmethod attack(self, target)",
+        "Warrior: hp=100, attack=10",
+        "battle: while c1.hp>0 and c2.hp>0: c1.attack(c2)..."
+      ],
+      "starter_code": "from abc import ABC, abstractmethod\nimport random\n",
+      "check_rules": [
+        "Character — ABC с attack()",
+        "3 наследника с разными статами",
+        "battle работает полиморфно",
+        "Бой до 0 hp"
+      ]
+    }
+  ]
+}
