@@ -24,8 +24,28 @@ export class LessonView {
 
     async loadProtocol() {
         try {
-            const url = new URL(`labs_protocols/${this.moduleId}.json`, APP_ROOT);
+            // Direct mapping from moduleId to protocol file path
+            const protocolMap = {
+                'python_core': 'python_core/python_core.json',
+                'python_functions': 'python_functions/python_functions.json',
+                'python_exceptions': 'python_exceptions/python_exceptions.json',
+                'python_oop': 'python_oop/python_oop.json',
+                'python_capstone': 'python_capstone/python_capstone.json',
+                'sql_basics': 'sql_basics/sql_basics.json',
+                'sql_queries': 'sql_queries/sql_queries.json',
+                'sql_capstone': 'sql_capstone/sql_capstone.json',
+                'web_api_basics': 'web_api_basics/web_api_basics.json',
+                'web_api_frameworks': 'web_api_frameworks/web_api_frameworks.json',
+                'web_api_capstone': 'web_api_capstone/web_api_capstone.json',
+                'testing': 'testing/testing.json',
+                'git_basics': 'git_basics/git_basics.json',
+                'docker_basics': 'docker_basics/docker_basics.json'
+            };
+            
+            const relativePath = protocolMap[this.moduleId] || `${this.moduleId}/${this.moduleId}.json`;
+            const url = new URL(`labs_protocols/${relativePath}`, APP_ROOT);
             const response = await fetch(url);
+            
             if (!response.ok) {
                 throw new Error('Протокол не найден');
             }
