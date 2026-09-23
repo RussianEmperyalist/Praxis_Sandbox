@@ -1,0 +1,214 @@
+{
+  "lesson_id": "python_capstone/01_project",
+  "block": "python_development",
+  "module": "python_capstone",
+  "meta": {
+    "title": "Капстоун 1: Проект на Python",
+    "topic_order": 1
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Какие темы из Python Core, Functions, Exceptions, OOP используются в этом проекте?",
+      "tutorial_guidance": "Капстоун объединяет все изученные темы: переменные и типы, функции и модули, обработку ошибок, классы и наследование, магические методы. Проект должен демонстрировать умение структурировать код, обрабатывать ошибки, использовать ООП для моделирования предметной области.",
+      "hint_levels": [
+        "Классы для сущностей",
+        "Функции для логики",
+        "Исключения для ошибок"
+      ],
+      "quiz_options": [
+        "Только классы",
+        "Только функции",
+        "Все темы: классы, функции, исключения, типы данных"
+      ],
+      "quiz_correct_index": 2
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Спроектируй структуру проекта: классы Task (id, title, description, status, priority, created_at), TaskManager (список задач, add, remove, list, filter_by_status, filter_by_priority, save_to_file, load_from_file). Нарисуй UML на бумаге или в комментариях.",
+      "tutorial_guidance": "Планирование перед кодом: выдели сущности, их атрибуты и поведение. Task — модель данных. TaskManager — логика управления. Разделение ответственности (Single Responsibility Principle). Используй dataclasses или обычные классы. Сохранение в JSON.",
+      "hint_levels": [
+        "from dataclasses import dataclass",
+        "enum для Status и Priority",
+        "json для сохранения"
+      ],
+      "starter_code": "from dataclasses import dataclass",
+      "check_rules": [
+        "class Task с полями",
+        "class TaskManager с методами CRUD",
+        "save/load в JSON"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни: соответствие требований и реализации",
+      "tutorial_guidance": "Чек-лист готовности капстоуна: все CRUD операции, сохранение/загрузка, фильтрация, обработка ошибок, валидация входных данных, типизация (type hints), docstrings, обработка ошибок.",
+      "hint_levels": [
+        "CRUD — create, read, update, delete",
+        "JSON serialization",
+        "try/except для файлов"
+      ],
+      "table_rows": [
+        {
+          "label": "Task — модель данных",
+          "expected_value": "Класс с атрибутами Task"
+        },
+        {
+          "label": "TaskManager — сервис",
+          "expected_value": "Класс с CRUD операциями"
+        },
+        {
+          "label": "main.py — точка входа",
+          "expected_value": "argparse с подкомандами"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь компонент с ответственностью",
+      "tutorial_guidance": "Чистая архитектура: модели (data) — только данные. сервисы (logic) — бизнес-логика. репозитории (storage) — сохранение. CLI/API — интерфейс. В этом проекте: Task (модель), TaskManager (сервис), storage (хранение), exceptions (ошибки), cli (CLI).",
+      "hint_levels": [
+        "Task — данные",
+        "TaskManager — логика + хранение",
+        "main.py — CLI"
+      ],
+      "matching_pairs": [
+        {
+          "left": "Task",
+          "right": "Модель данных (атрибуты)"
+        },
+        {
+          "left": "TaskManager",
+          "right": "Сервис (логика)"
+        },
+        {
+          "left": "main.py",
+          "right": "CLI интерфейс"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Какой формат удобен для сохранения задач в файл?",
+      "hint_levels": [
+        "Читаемый, стандартный формат"
+      ],
+      "quiz_options": [
+        "JSON",
+        "CSV",
+        "XML"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как обработать отсутствие файла при загрузке?",
+      "hint_levels": [
+        "FileNotFoundError",
+        "Вернуть пустой список",
+        "try/except"
+      ],
+      "quiz_options": [
+        "if os.path.exists()",
+        "try/except FileNotFoundError",
+        "Не обрабатывать"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Реализуй Task и TaskManager: task — модель данных, task_manager — сервис с CRUD, main.py — CLI.",
+      "hint_levels": [
+        "dataclass для Task",
+        "list для хранилища",
+        "argparse для CLI"
+      ],
+      "starter_code": "from dataclasses import dataclass",
+      "check_rules": [
+        "Task с UUID id",
+        "TaskManager с add/remove/list",
+        "main.py с argparse"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Реализуй Counter: атрибут count, методы increment/decrement/reset, __call__ для инкремента.",
+      "hint_levels": [
+        "__call__ делает объект вызываемым",
+        "self.count += 1; return self.count"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Counter с count",
+        "Методы increment, decrement, reset",
+        "c(); c(); c() работает"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай CLI в main.py: argparse с подкомандами add, list, done, remove, save, load.",
+      "hint_levels": [
+        "import argparse",
+        "parser.add_subparsers()",
+        "Каждая команда вызывает метод TaskManager"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "argparse с подкомандами",
+        "add, list, done, remove, save, load",
+        "Аргументы для каждой команды"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 50,
+      "markdown_text": "ФИНАЛЬНЫЙ ПРОЕКТ: Менеджер задач (Task Manager CLI). Полная реализация всех шагов выше. Запуск: python main.py add --title "Изучить Python" --priority high. python main.py list --status todo. python main.py done <id>. python main.py save tasks.json. python main.py load tasks.json. Код в папке task_manager/ с модулями: models.py, manager.py, storage.py, exceptions.py, cli.py. Type hints во всех функциях. Docstrings. Обработка ошибок. Валидация входных данных.",
+      "hint_levels": [
+        "Структура: task_manager/ с 5+ модулями",
+        "models.py: Task, Enums",
+        "manager.py: TaskManager",
+        "storage.py: JSONStorage",
+        "exceptions.py: TaskNotFoundError, ValidationError",
+        "cli.py: argparse"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Пакет task_manager с 5+ модулями",
+        "models.py: Task, Enums",
+        "manager.py: TaskManager",
+        "storage.py: JSONStorage",
+        "exceptions.py: TaskNotFoundError, ValidationError",
+        "cli.py: argparse"
+      ]
+    }
+  ]
+}

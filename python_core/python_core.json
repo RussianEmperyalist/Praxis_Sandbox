@@ -1,0 +1,232 @@
+{
+  "lesson_id": "python_core/01_variables_types",
+  "block": "python_development",
+  "module": "python_core",
+  "meta": {
+    "title": "Переменные и типы данных",
+    "topic_order": 1
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Как правильно создать переменную с именем пользователя?",
+      "tutorial_guidance": "В Python переменные создаются просто присваиванием значения. Имена переменных могут содержать буквы, цифры и подчёркивание, но не могут начинаться с цифры. Принято использовать snake_case для имён переменных. Python динамически типизирован — не нужно объявлять тип заранее, он определяется по значению.",
+      "hint_levels": [
+        "Используй знак = для присваивания",
+        "Имена в snake_case",
+        "username = 'Ivan'"
+      ],
+      "quiz_options": [
+        "username = 'Ivan'",
+        "var username = 'Ivan'",
+        "string username = 'Ivan'"
+      ],
+      "quiz_correct_index": 0
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай переменные: имя (строка), возраст (целое число), рост (число с плавающей точкой), студент (булево). Выведи их типы через type().",
+      "tutorial_guidance": "Основные типы данных в Python: str (строки), int (целые числа), float (числа с плавающей точкой), bool (булевы значения True/False). Функция type() показывает тип любого значения. Строки пишутся в кавычках, числа — как есть, булевы — True/False с большой буквы.",
+      "hint_levels": [
+        "name = 'Anna'; age = 25",
+        "height = 1.75; is_student = True",
+        "print(type(name), type(age), type(height), type(is_student))"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Созданы 4 переменные разных типов",
+        "Используется type() для вывода типов",
+        "Вывод содержит str, int, float, bool"
+      ]
+    },
+    {
+      "step_id": "step-3",
+      "phase": "guided",
+      "task_type": "table",
+      "points": 1,
+      "markdown_text": "Заполни таблицу: определение типов значений",
+      "tutorial_guidance": "Python автоматически определяет тип по значению. '42' — это строка (в кавычках), 42 — целое число, 3.14 — float, True — bool. Функция type() возвращает класс типа. Это важно понимать, потому что операции зависят от типов: к строкам нельзя прибавить число напрямую.",
+      "hint_levels": [
+        "Кавычки делают строку",
+        "Целые числа без точки",
+        "True/False — bool"
+      ],
+      "table_rows": [
+        {
+          "label": "type('hello')",
+          "expected_value": "<class 'str'>"
+        },
+        {
+          "label": "type(42)",
+          "expected_value": "<class 'int'>"
+        },
+        {
+          "label": "type(3.14)",
+          "expected_value": "<class 'float'>"
+        },
+        {
+          "label": "type(True)",
+          "expected_value": "<class 'bool'>"
+        },
+        {
+          "label": "type(None)",
+          "expected_value": "<class 'NoneType'>"
+        }
+      ]
+    },
+    {
+      "step_id": "step-4",
+      "phase": "guided",
+      "task_type": "matching",
+      "points": 5,
+      "markdown_text": "Сопоставь значение с его типом",
+      "tutorial_guidance": "Типы данных определяют, какие операции можно выполнять. Строки поддерживают конкатенацию и срезы, числа — арифметику, bool — логические операции. None — специальное значение 'ничего', своего типа NoneType. Понимание типов — основа отладки ошибок TypeError.",
+      "hint_levels": [
+        "Кавычки = строка",
+        "Цифры без точки = int",
+        "С точкой = float"
+      ],
+      "matching_pairs": [
+        {
+          "left": "'42'",
+          "right": "str"
+        },
+        {
+          "left": "42",
+          "right": "int"
+        },
+        {
+          "left": "3.14",
+          "right": "float"
+        },
+        {
+          "left": "True",
+          "right": "bool"
+        },
+        {
+          "left": "None",
+          "right": "NoneType"
+        }
+      ]
+    },
+    {
+      "step_id": "step-5",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что выведет type(10 / 2)?",
+      "hint_levels": [
+        "Обычное деление всегда даёт float",
+        "Даже если делится нацело",
+        "float"
+      ],
+      "quiz_options": [
+        "int",
+        "float",
+        "str"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-6",
+      "phase": "independent",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Какой тип у переменной x после x = '5' + '3'?",
+      "hint_levels": [
+        "Конкатенация строк",
+        "Результат — строка",
+        "str"
+      ],
+      "quiz_options": [
+        "int",
+        "str",
+        "float"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-7",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши код, который запрашивает у пользователя имя и возраст через input(), а затем выводит: 'Привет, {имя}! Через 10 лет тебе будет {возраст+10}.'",
+      "hint_levels": [
+        "input() возвращает строку",
+        "int() преобразует в число",
+        "f-строка для форматирования"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Используется input() дважды",
+        "Возраст преобразован в int",
+        "Используется f-строка",
+        "Вывод содержит имя и возраст+10"
+      ]
+    },
+    {
+      "step_id": "step-8",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай переменные a = 10, b = 3. Выведи результаты: a + b, a - b, a * b, a / b, a // b, a % b, a ** b. Подпиши каждый результат.",
+      "hint_levels": [
+        "// — целочисленное деление",
+        "% — остаток от деления",
+        "** — возведение в степень"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Выведены все 7 операций",
+        "Используются f-строки с подписями",
+        "Результаты верны: 13, 7, 30, 3.33...",
+        "3, 1, 1000"
+      ]
+    },
+    {
+      "step_id": "step-9",
+      "phase": "independent",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Напиши программу-конвертер: запрашивает температуру в Цельсиях, выводит в Фаренгейтах (F = C * 9/5 + 32) и Кельвинах (K = C + 273.15). Результаты с 1 знаком после запятой.",
+      "hint_levels": [
+        "Две формулы перевода",
+        "float(input()) для ввода",
+        "f'{val:.1f}' для формата"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Запрашивает Цельсии",
+        "Выводит Фаренгейты и Кельвины",
+        "Формат с 1 знаком после запятой",
+        "Формулы верны"
+      ]
+    },
+    {
+      "step_id": "step-10",
+      "phase": "capstone",
+      "task_type": "programming",
+      "points": 20,
+      "markdown_text": "Мини-проект: калькулятор ИМТ (индекса массы тела). Запрашивает вес (кг) и рост (м), считает ИМТ = вес / рост², выводит ИМТ с 1 знаком и категорию: <18.5 — дефицит, 18.5-25 — норма, 25-30 — избыток, >30 — ожирение.",
+      "hint_levels": [
+        "class Book: __init__, __str__",
+        "class Library: books = []",
+        "add_book, remove_book, find_by_author, find_by_year, __len__, __getitem__",
+        "JSON сохранение/загрузка"
+      ],
+      "starter_code": "",
+      "check_rules": [
+        "Класс Book с 4 атрибутами",
+        "Класс Library со списком",
+        "add, remove, find методы",
+        "__len__ и __getitem__ работают"
+      ]
+    }
+  ]
+}

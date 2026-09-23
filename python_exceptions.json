@@ -1,0 +1,49 @@
+{
+  "lesson_id": "python_exceptions/",
+  "block": "python_development",
+  "module": "python_exceptions",
+  "meta": {
+    "title": "Обработка исключений",
+    "topic_order": 2
+  },
+  "steps": [
+    {
+      "step_id": "step-1",
+      "phase": "guided",
+      "task_type": "quiz",
+      "points": 1,
+      "markdown_text": "Что такое исключения в Python?",
+      "tutorial_guidance": "Исключения (exceptions) — это события, которые могут прервать нормальное выполнение программы. Они позволяют обрабатывать ошибки gracefully вместо того, чтобы программа падала.",
+      "hint_levels": [
+        "Исключения — механизм обработки ошибок",
+        "try/except блоки",
+        "raise для создания собственных исключений"
+      ],
+      "quiz_options": [
+        "Исключения — это ошибки выполнения",
+        "Try/except — блок обработки ошибок",
+        "Raise — создание собственного исключения"
+      ],
+      "quiz_correct_index": 1
+    },
+    {
+      "step_id": "step-2",
+      "phase": "guided",
+      "task_type": "programming",
+      "points": 10,
+      "markdown_text": "Создай функцию, которая обрабатывает возможные ошибки при конвертации данных",
+      "tutorial_guidance": "Используй try/except для перехвата ValueError при конвертации строк в числа. Добавь проверку на существование файла при чтении.",
+      "hint_levels": [
+        "try/except для ValueError",
+        "функция convert_value",
+        "return None при ошибке"
+      ],
+      "starter_code": "def convert_value(value):\n    try:\n        return int(value)\n    except ValueError:\n        return None",
+      "check_rules": [
+        "try/except блок используется",
+        "перехватывается ValueError",
+        "функция возвращает None при ошибке"
+      ]
+    }
+  ]
+}
